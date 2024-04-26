@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring Water Wastage</title>
+    <link rel="stylesheet" href="solution.css">
+</head> 
+<style>
+    /* marquee
+{
+    font-size: 20px;
+    font-weight: 700;
+    color:rgb(157, 157, 230);
+    text-shadow: 2px 4px 8px pink, 2px 2px 4px magenta, 0 4px 4px pink;
+    text-decoration: indianred;
+} */
+.service-box
+{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: auto;
+}
+.single-service-1
+{
+    flex-basis: 48%;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    color: whitesmoke;
+    position: relative;
+}
+.single-service-2
+{
+    flex-basis: 48%;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    color: whitesmoke;
+    position: relative;
+}
+.single-service-3
+{
+    flex-basis: 48%;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    color: whitesmoke;
+    position: relative;
+}
+.single-service-4
+{
+    flex-basis: 48%;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    color: whitesmoke;
+    position: relative;
+}
+.single-service-1 img
+{
+    width: 100%;
+    height: 98%;
+    border-radius: 9px;
+}
+.single-service-2 img
+{
+    width: 99.7%;
+    border-radius: 9px;
+}
+.single-service-3 img
+{
+    border-radius: 9px;
+    width: 100%;
+    height: 85%;
+}
+.single-service-4 img
+{
+    border-radius: 9px;
+    width: 99.3%;
+    height: 85%;
+}
+.overlay-1
+{
+    width: 100%;
+    height: 98%;
+    position: absolute;
+    top: 0;
+    border-radius: 9px;
+    cursor: pointer;
+    background: linear-gradient(rgba(0,0,0,0.3),rgb(126, 158, 206));
+    opacity: 0;
+    transition: 1s;
+}
+.overlay-2
+{
+    width: 99.9%;
+    height: 99.5%;
+    position: absolute;
+    top: 0;
+    border-radius: 9px;
+    cursor: pointer;
+    background: linear-gradient(rgba(0,0,0,0.3),rgb(126, 158, 206));
+    opacity: 0;
+    transition: 1s;
+}
+.overlay-3
+{
+    width: 100%;
+    height: 84.6%;
+    position: absolute;
+    top: 0;
+    border-radius: 9px;
+    cursor: pointer;
+    background: linear-gradient(rgba(0,0,0,0.3),rgb(126, 158, 206));
+    opacity: 0;
+    transition: 1s;
+}
+.overlay-4
+{
+    width: 99.4%;
+    height: 85%;
+    position: absolute;
+    top: 0;
+    border-radius: 9px;
+    cursor: pointer;
+    background: linear-gradient(rgba(0,0,0,0.3),rgb(126, 158, 206));
+    opacity: 0;
+    transition: 1s;
+}
+.single-service-1:hover .overlay-1
+{
+    opacity: 1;
+}
+.single-service-2:hover .overlay-2
+{
+    opacity: 1;
+}
+.single-service-3:hover .overlay-3
+{
+    opacity: 1;
+}
+.single-service-4:hover .overlay-4
+{
+    opacity: 1;
+}
+.service-desc
+{
+    width: 80%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: 1s;
+}
+.service-desc-3
+{
+    width: 80%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: 1s;
+}
+hr
+{
+    background: white;
+    height: 2px;
+    border: 0;
+    margin: 15px auto;
+    width: 60%;
+}
+.service-desc p
+{
+    font-size: 17px;
+}
+.service-desc-3 p
+{
+    font-size: 17px;
+}
+.single-service-1:hover .service-desc
+{
+    bottom: 45%;
+    opacity: 1;
+}
+.single-service-2:hover .service-desc
+{
+    bottom: 45%;
+    opacity: 1;
+}
+.single-service-3:hover .service-desc-3
+{
+    bottom: 45%;
+    opacity: 1;
+}
+.single-service-4:hover .service-desc
+{
+    bottom: 45%;
+    opacity: 1;
+}
+* {box-sizing: border-box}
+body {margin:0}
+.mySlides {display: none}
+img {vertical-align: middle;}
+    #body{
+        background-color: rgba(94, 159, 189, 0.511);
+    }
+    main{
+            background-color: rgba(94, 159, 189, 0.511);
+        }
+    #img{
+        height: 400px;
+        width: 700px;
+        border-radius: 10px;
+        box-shadow: 10px;
+    }
+    .mySlides {display: none}
+img {vertical-align: middle;}
+.slideshow-container 
+{
+  max-width: 600px;
+  position: relative;
+  margin: auto;
+  margin-top: 100px;
+  top: -80px;
+  left: 15px;
+}
+.prev, .next 
+{
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+.next 
+{
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+.prev:hover, .next:hover 
+{
+  background-color: rgb(19, 5, 143);
+}
+.text 
+{
+  color: orange;
+  background: black;
+  font-weight: 700;
+  font-size: 25px;
+  padding: 8px 25px;
+  position: absolute;
+  bottom: -1px;
+  width: 100%;
+  text-align: center;
+}
+.numbertext 
+{
+  color: black;
+  font-size: 18px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+.fade 
+{
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+iframe
+{
+    margin-left: 120px;
+    margin-top: 10px;
+}
+@-webkit-keyframes fade 
+{
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+@keyframes fade 
+{
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+@media only screen and (max-width: 300px) 
+{
+  .prev, .next,.text {font-size: 11px}
+}
+</style>
+<body id="body" >
+    <!-- navbar starts here  -->
+    <nav class="flex bg-slate-800 w-full h-16 flex-wrap justify-between items-center" id="navbar">
+        <div class="px-4">
+            <img class="w-14 rounded-full" src="./WhatsApp Image 2023-11-05 at 10.24.09 PM.jpeg" alt="LOGO">
+        </div>
+        <div >
+            <ul class="md:flex flex-wrap hidden text-white ">
+                <a class="mx-[10px]" href="index.html"><li>Home</li></a>
+                <a class="mx-[10px]" href="solution.html"><li>Solution</li></a>
+                <a class="mx-[10px]" href="monitoring.html"><li>Monitoring</li></a>
+                <a class="mx-[10px]" href="Reporting.html"><li>Report</li></a>
+                <a class="mx-[10px]" href="aboutUs.html"><li>About Us</li></a>
+            </ul>
+        </div>
+        <a href="login.html"><div class="hidden md:block  bg-indigo-700 text-white rounded-2xl hover:bg-indigo-400 cursor-pointer">
+            <button class="mx-4 my-4">Login/signup</button>
+        </div></a>
+        <div class="md:hidden block text-3xl">
+            <p class="font-bold">
+                &#9776;
+            </p>
+        </div>
+    </nav>
+    <!-- navbar ends here  -->
+    <!-- content starts here  -->
+    <!-- <main class="container mx-auto  shadow-lg rounded-xl text-gray-800   "> -->
+        
+        <!-- <div class="text-center">
+            
+        </div> -->
+        <!-- <div class="flex flex-wrap mt-5 ">
+            <div class="px-10 flex flex-col flex-wrap text-center w-[50%]">
+                <h1 class="text-center text-3xl pt-8 mt-8 font-bold">What You Can Do to Waste Less Water</h1>
+
+                Protecting the environment starts at home. It's extremely important to make active efforts to change your water waste habits. It may seem like an impossible task or a big responsibility when you're viewing the state of the world, but always remember that even the simplest changes you make at home can make a positive difference — and that's just for one person living alone. A family of 4 which develops the same water improvement habits, for example, can make even more of a difference within the same household. It's also important to support other household members, or people you know, in water-saving habits. Always share any information or tips you have, including the ones listed here.
+                <h2 class="font-bold text-2xl">Some ways you can waste less water include:</h2>
+                
+            </div>
+            <div class="px-10 flex flex-col flex-wrap text-center w-[50%]">
+                <img src="https://sswm.info/sites/default/files/inline-images/INFONET-BIOVISION%202010.%20Schematic%20of%20a%20typical%20commercial%20drip%20irrigation%20system.png" id="img">
+            </div>
+        </div>
+        <div class="flex flex-wrap">
+            <div class="px-10 flex flex-col flex-wrap text-center w-[50%]">
+                <h2 class="font-bold text-xl">Install low-flow systems, such as showerheads</h2>
+        
+                Many people opt for a bathroom overhaul or renovation project, so why not make it one which benefits your water consumption, too? Make your home as eco-friendly as possible when it comes to your plumbing.
+
+                Not only do low-flow systems help you to preserve water, but they also mean you can save money on your energy bills.
+
+                What low flow means is reduced water pressure in order to save as much water as possible. Low flow is particularly beneficial for busy households which see a lot of bathroom traffic.
+
+                <h2 class="font-bold text-xl">Take shorter showers and half-full baths</h2>
+
+                Be more mindful about why you're taking a long shower. It's easily done, especially during winter months, to take a longer, hotter shower. Some people may even decide to multi-task and try brushing their teeth in the shower! Others may put the shower on to get the water running whilst sorting laundry or attending to other bathroom tasks.
+
+                Eliminate this excess water waste by turning the shower on when you're ready to get in and limiting your shower to a few minutes:
+
+                In regard to baths, if you're taking a quick bath for basic hygiene, you can avoid a completely full bath. If for relaxation, think about limiting your water level by even just an inch or two.
+
+                <h2 class="font-bold text-xl">Avoid laundry loads if they are only half full</h2> -->
+            <!-- <div class="flex"> -->
+                <!-- <p>Laundry can be very difficult to separate and keep on top of, especially within busy households. There may be certain clothing items you desperately need but for which you haven't got enough corresponding clothes or colors to warrant a full load.
+
+                Having better organization with your clothing and laundry system will really help. Try to avoid half-full laundry loads. If there are certain clothing items you know you like to wear often, be more organized ahead of time so that you can put items in a full load rather than last-minute half-load panics!
+
+                Another tip is to think about the type of materials and colors you're buying. If you have a few delicate items which cannot be used on a normal wash, you might be risking half-full delicate cycles to wash them. Furthermore, you may have a lot more dark colors than you do light, meaning you're forced to run a half-load for your light items only. Avoid this if you can by sticking to colors and materials which can easily be washed together. Let this build up over time so that you eventually have delicate whites in with other white clothes and delicate blacks with colored clothing, which you can put on delicate washes.
+                </p> -->
+            <!-- </div> -->
+<!-- 
+                <h2 class="font-bold text-xl">Turn off the tap when brushing your teeth</h2>
+
+                There's no reason for your tap to be on when brushing your teeth, and it's a simple fix that can save a significant amount of water. It's important to let your kids know this, too, if you do have younger family members who brush their teeth without you to supervise.
+
+                <h2 class="font-bold text-xl">Turn the tap on when you need a quick burst of water for a refresh, but, otherwise, leave the tap off.</h2>
+
+                Only fill the sink half-full for washing up
+
+                Doing the dishes is another daily chore that becomes normality, and you may not realize that you're wasting water. While you do need to fill up your sink to the optimum level for hygiene purposes and an easier clean, you can make small adjustments
+
+                to limit water waste.
+
+                If you don't have a lot of items to wash, does it warrant a full sink? Or, if you know you're going to need to fill up your sink with fresh water halfway through because of particularly dirty or stubborn items, can you ensure the first load
+
+                is shallow if it's going to be replaced?
+
+                <h2 class="font-bold text-xl">Collect rainwater</h2>
+
+                Doing the dishes is another daily chore that becomes normality, and you may not realize that you're wasting water. While you do need to fill up your sink to the optimum level for hygiene purposes and an easier clean, you can make small adjustments
+
+                to limit water waste.
+
+                If you don't have a lot of items to wash, does it warrant a full sink? Or, if you know you're going to need to fill up your sink with fresh water halfway through because of particularly dirty or stubborn items, can you ensure the first load
+
+                is shallow if it's going to be replaced? -->
+
+                <!-- <h2 class="font-semibold text-xl">What a Business Can Do to Waste Less Water</h2>
+
+                Businesses need to try even harder to lower their environmental impact, alongside household habits. Businesses are capable of wasting a significant amount of water, especially those with extremely large premises and lots of employees.
+
+                If you're a business manager or owner, here are some things you can do to preserve water:
+
+                Have regular water audits conducted
+
+                This is essential for preserving water. Being a business leader or owner doesn't mean you'll always know what's best in regard to preserving water. You may not even know the ways in which your business or premises is easily wasting water.
+
+                Water audits by professionals can help you to always keep on track and learn about new ways to save on water. This could also help with your business utility bills.
+
+                Install water-efficient equipment
+
+                This might vary depending on what your business is and what is installed within the premises. Nevertheless, even for the simplest features such as bathroom taps, you can make sure your plumbing and equipment are eco-friendly with water-saving in mind.
+
+                This is particularly true of any cafeteria or kitchen equipment you have in the workplace.
+
+                Educate employees on water-saving practices
+
+                No matter how well-versed the people in charge are in regard to water-saving practices, it can be a large team of employees who have the most negative impact — without knowing it. If you have employees using your premises every day, there is a high amount of potential for water wastage.
+
+                It's, therefore, crucial to educate your employees on the importance of an eco-friendly workplace and how they can work to save water on a daily basis. They can then even take these key tips home with them to conduct better practices in their personal life, too. It's much easier for people to develop better water habits when their work life and home life are working hand-in-hand. -->
+            <!-- </div> -->
+            <!-- <div class="px-10 flex flex-col flex-wrap text-center w-[50%]" class="image"> -->
+                <!-- <img src="https://media.istockphoto.com/id/1298320859/vector/rainwater-harvesting-as-water-resource-accumulation-for-home-outline-concept.jpg?s=612x612&w=0&k=20&c=V8jjm_aQuN-8Pph6LOTQ3VWJokSpl46ND5Q-dQm8Pe0=" alt="img" class="rounded-lg  mt-5"> -->
+                <!-- <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220831135941/WaterCollection-660x330.jpg" alt="img" class="rounded-lg  mt-5"> -->
+                <!-- <img src="https://www.pentair.com/en-us/commercial-filtration/services/total-water-management-process/jcr:content/par/section_copy/col1/image.img.png/1643653175008.pngg" alt="img" class="rounded-lg  mt-5"> -->
+                <!-- <img src="https://d26zrrb868k3tz.cloudfront.net/public_storage/production/gwi2018/story_images/images/8363/large/abundance.png?1567181755" alt="img" class="rounded-lg  mt-5"> -->
+            </div>
+        </div>
+        <section id="gallery" class="m-8">
+            <div class="title-text text-center m-10">
+                <p class="text-3xl">Solutions</p>
+
+                <!-- <marquee width="52%" direction="left" height="50px" scrollamount="4" behavior="alternate">
+                   "Water Is Life"!
+                </marquee> -->
+            </div>
+            <div class="slideshow-container">
+                <div class="mySlides fade">
+                  <div class="numbertext">1 /5</div>
+                  <img src="https://media.istockphoto.com/id/1298320859/vector/rainwater-harvesting-as-water-resource-accumulation-for-home-outline-concept.jpg?s=612x612&w=0&k=20&c=V8jjm_aQuN-8Pph6LOTQ3VWJokSpl46ND5Q-dQm8Pe0=" style="width:100%">
+                  <!-- <div class="text  mt-10">Rainwater Harvesting</div> -->
+                </div>
+                <div class="mySlides fade">
+                  <div class="numbertext">2 /5</div>
+                  <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220831135941/WaterCollection-660x330.jpg" alt="img" class="rounded-lg  mt-5" style="width:100%">
+                  <!-- <div class="text mt-10">Flow Chart</div> -->
+                </div>
+                <div class="mySlides fade">
+                  <div class="numbertext">3 /5</div>
+                  <img src="https://www.pentair.com/en-us/commercial-filtration/services/total-water-management-process/jcr:content/par/section_copy/col1/image.img.png/1643653175008.pngg" style="width:100%">
+                  <!-- <div class="text mt-10">Solutions</div> -->
+                </div>
+                <div class="mySlides fade">
+                    <div class="numbertext">4 /5</div>
+                    <img src="https://d26zrrb868k3tz.cloudfront.net/public_storage/production/gwi2018/story_images/images/8363/large/abundance.png?1567181755" style="width:100%">
+                    <!-- <div class="text mt-10">Facts</div> -->
+                </div>
+                <div class="mySlides fade">
+                    <div class="numbertext">5 /5</div>
+                    <img src="https://sswm.info/sites/default/files/inline-images/INFONET-BIOVISION%202010.%20Schematic%20of%20a%20typical%20commercial%20drip%20irrigation%20system.png" style="width:100%">
+                    <!-- <div class="text mt-10">Drip irrigation</div> -->
+                </div>
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                
+                <script>
+                    var myIndex = 0;
+                    carousel();
+                   function carousel() {
+                    var i;
+                    var x = document.getElementsByClassName("mySlides fade");
+                    for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";  
+                    }
+                    myIndex++;
+                    if (myIndex > x.length) {myIndex = 1}    
+                    x[myIndex-1].style.display = "block";  
+                    setTimeout(carousel, 4000);    
+                    }
+               </script>
+                <script>
+                    var slideIndex = 1;
+                    showSlides(slideIndex);
+                    
+                    function plusSlides(n) {
+                      showSlides(slideIndex += n);
+                    }
+                    
+                    function currentSlide(n) {
+                      showSlides(slideIndex = n);
+                    }
+                    
+                    function showSlides(n) {
+                      var i;
+                      var slides = document.getElementsByClassName("mySlides");
+                      var dots = document.getElementsByClassName("dot");
+                      if (n > slides.length) {slideIndex = 1}    
+                      if (n < 1) {slideIndex = slides.length}
+                      for (i = 0; i < slides.length; i++) {
+                          slides[i].style.display = "none";  
+                      }
+                      for (i = 0; i < dots.length; i++) {
+                          dots[i].className = dots[i].className.replace(" active", "");
+                      }
+                      slides[slideIndex-1].style.display = "block";  
+                      dots[slideIndex-1].className += " active";
+                    }
+                </script> 
+        </section>
+        <h1 class=" text-center text-4xl p-10 ">Video Tutorials</h1>
+        <div class="flex flex-wrap ">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/I4V0QiyKAYs?si=ZgFzQxURNAJyXlf-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Op0Hqs1hD4I?si=Ik6FZiGZXcQEIpSS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </main>
+    <footer>
+        <div class="text-center text-white">
+            <div>
+                <p>&#169; 2023 Water Watch, Inc. All rights reserved.</p>
+            </div>
+            <div>
+                
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
